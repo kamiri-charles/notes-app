@@ -23,7 +23,7 @@ const Header = () => {
                 {user === undefined ? <Loader type='ball-pulse' /> : (
                     <>
                         <i className='bx bx-user bx-md'></i>
-                        <span>{user.username ? user.username : ''}</span>
+                        <span>{user ? user.username : ''}</span>
                     </>
                 )}
             </div>

@@ -1,7 +1,9 @@
 .header {
-    background: black;
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100px;
+    background: black;
     color: white;
     display: flex;
     align-items: center;

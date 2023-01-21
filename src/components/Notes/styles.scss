@@ -1,0 +1,11 @@
+.notes {
+    display: flex;
+    align-items: flex-start;
+
+    .note {
+        padding: 20px;
+        margin: 20px;
+        background: white;
+        border-radius: 3px;
+    }
+}

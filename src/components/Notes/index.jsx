@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Header from "../Header"
+import './styles.scss'
 
 const Notes = () => {
     let [notes, setNotes] = useState([]);
@@ -13,7 +14,6 @@ const Notes = () => {
     }
 
     useEffect(() => {
-        // Check if user data is in local storage
         if (localStorage.getItem('user')) {
             fetchNotes();
         } else {
@@ -22,12 +22,17 @@ const Notes = () => {
     }, [nav])
 
     return (
-        <div className="notes">
+        <div className="notes component">
             <Header />
             {notes.map(note => (
-                <div className="note" key={note.id}>
-                    <h3>{note.title}</h3>
-                </div>
+
+                <Link
+                    key={note.id}
+                    className="note"
+                    to={`/note/${note.id}`}>
+                        {note.title}
+                </Link>
+
             ))}
         </div>
     )

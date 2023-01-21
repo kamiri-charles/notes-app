@@ -1,24 +1,18 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { sign_in_user } from './sign_in'
+import { sign_up_user } from './sign_up'
 import Header from '../Header'
 import './styles.scss'
 
 
-const SignIn = () => {
+const SignUp = () => {
     let error_div = useRef();
     let nav = useNavigate();
 
     let [user, setUser] = useState({
         username: "",
-        password: ""
-    })
-
-
-    useEffect(() => {
-        if (localStorage.getItem('user')) {
-            nav('/')
-        }
+        password: "",
+        password2: ""
     })
 
     return (
@@ -26,7 +20,7 @@ const SignIn = () => {
             <Header />
             <div className='sign-in component'>
                 <form>
-                    <span className="title">Sign in to your account.</span>
+                    <span className="title">Create an account.</span>
 
                     <input
                         type='text'
@@ -42,24 +36,31 @@ const SignIn = () => {
                         onChange={e => setUser({...user, password: e.target.value})}
                     />
 
+                    <input
+                        type='password'
+                        placeholder='Re-enter the password'
+                        value={user.password2}
+                        onChange={e => setUser({...user, password2: e.target.value})}
+                    />
+
                     <div className="errors" ref={error_div}></div>
 
                     <button
                         type='submit'
                         onClick={e => {
                             e.preventDefault();
-                            sign_in_user(user, error_div, nav);
+                            sign_up_user(user, error_div, nav);
                         }}>
-                        Sign in
+                        Create account
                     </button>
 
                     <div className="form-footer">
-                        <span>Don't have an account?</span>
-                        <Link to='/sign-up'>Create account.</Link>
+                        <span>Already have an account?</span>
+                        <Link to='/sign-in'>Log in.</Link>
                     </div>
                 </form>
             </div>
         </>
     )
 }
-export default SignIn;
+export default SignUp;

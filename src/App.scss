@@ -30,6 +30,12 @@ body {
 
 .component {
     height: calc(100vh - 100px);
+    margin-top: 100px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 .form-footer {
