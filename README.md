@@ -14,5 +14,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `Backend`
-Django backend [https://github.com/kamiri-charles/notes-app-backend/](GitHub).
+# `Backend`
+[https://github.com/kamiri-charles/notes-app-backend/](->Backend code.).
