@@ -1,0 +1,23 @@
+.header {
+    background: black;
+    width: 100vw;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+
+    .l {
+        font-family: 'Sedgwick Ave', cursive;
+        text-align: center;
+
+        i { margin: 0 5px; }
+    }
+
+    .r {
+        display: grid;
+        place-items: center;
+    }
+        
+}
