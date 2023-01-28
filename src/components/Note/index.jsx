@@ -1,32 +1,34 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Header from "../Header";
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import Header from "../Header"
+import './styles.scss'
 
-const Note = () => {
-    let [note, setNote] = useState();
-    let { noteId } = useParams();
+const Note = ({note}) => {
     let nav = useNavigate();
 
-    let fetchNote = async (id) => {
-        fetch(`/api/note/${id}/`)
-        .then(res => res.json())
-        .then(data => setNote(data))
-    }
-
     useEffect(() => {
-        if (localStorage.getItem('user')) {
-            fetchNote(noteId);
-        } else {
-            nav('/sign-in');
+        if (!localStorage.getItem('user')) {
+            nav('/sign-in')
         }
     })
 
     return (
-        <div className="note component">
+        <div className="note-meta">
             <Header />
-            <span>{note?.title}</span>
-            <div>{note?.content}</div>
+            <div className="note-title" contentEditable>{note.title}</div>
+            <textarea value={note.content}></textarea>
+
+            <div className="note-footer">
+                
+                <div className="updated">Last updated: {
+                    new Date(note.updated_at).toLocaleDateString()
+                }</div>
+
+                <div className="created">Created on: {
+                    new Date(note.created_at).toLocaleDateString()
+                }</div>
+                
+            </div>
         </div>
     )
 }

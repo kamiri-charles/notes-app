@@ -1,11 +1,62 @@
 .notes {
     display: flex;
-    align-items: flex-start;
+    padding: 20px;
 
-    .note {
-        padding: 20px;
-        margin: 20px;
+    .nav {
+        width: 30%;
+        height: 80vh;
+        margin-right: 20px;
         background: white;
-        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+
+        .title {
+            padding: 20px;
+            font-size: 20px;
+            font-family: 'Ubuntu', sans-serif;
+            text-decoration: underline;
+        }
+
+        .note {
+            position: relative;
+            padding: 20px;
+            margin: 5px 10px;
+            border-radius: 5px;
+            background: #eee;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #ddd;
+            }
+
+            .date {
+                font-size: 12px;
+                color: #000;
+                position: absolute;
+                top: 60%;
+                right: 10px;
+            }
+
+            .delete {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+    }
+
+    .main {
+        width: 70%;
+        height: 80vh;
+        background: white;
+        border-radius: 5px;
     }
 }
