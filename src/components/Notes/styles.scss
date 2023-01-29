@@ -58,5 +58,21 @@
         height: 80vh;
         background: white;
         border-radius: 5px;
+        transition: all 0.2s ease-in-out;
+
+        .empty {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 20px;
+            font-family: 'Ubuntu', sans-serif;
+
+            .icon {
+                font-size: 50px;
+                margin-bottom: 10px;
+            }
+        }
     }
 }

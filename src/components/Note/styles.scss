@@ -1,24 +1,56 @@
 .note-meta {
-    
+    position: relative;
+
+    .save {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: greenyellow;
+        text-align: center;
+        position: absolute;
+        top: 95%;
+        right: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background: green;
+        }
+
+        &.disabled {
+            background: #ddd;
+            cursor: default;
+        }
+    }
+
     .note-title {
         padding: 40px;
         font-size: 20px;
         font-family: 'Ubuntu', sans-serif;
-        text-decoration: underline;
     }
-
+    
     textarea {
+        border: none;
+        resize: none;
+        overflow: auto;
         width: 100%;
         height: 100%;
-        border: none;
         padding: 20px;
         font-size: 16px;
         font-family: 'Ubuntu', sans-serif;
-        resize: none;
         min-height: 300px;
         max-height: 80%;
-    }
+        background: #ddd;
 
+        &:focus {
+            outline: none;
+        }
+    }
+    
     .note-footer {
         display: flex;
         flex-direction: column;

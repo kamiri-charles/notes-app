@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import Header from "../Header"
 import Note from "../Note"
+import Empty from "./Empty"
 import './styles.scss'
 
 const Notes = () => {
@@ -35,9 +36,11 @@ const Notes = () => {
                         className="note"
                         onClick={() => setNote(note)}>
                             {note.title}
+                            
                             <span className="date">{
                                 new Date(note.updated_at).toLocaleDateString()
                             }</span>
+
                             <span className="delete">
                                 <i className='bx bx-trash-alt'></i>
                             </span>
@@ -47,7 +50,7 @@ const Notes = () => {
 
 
             <div className="main">
-                {note ? <Note note={note} /> : <div className="empty">Select a note to view it.</div>}
+                {note ? <Note note={note} /> : <Empty />}
             </div>
             
         </div>
