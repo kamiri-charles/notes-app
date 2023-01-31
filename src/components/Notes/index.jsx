@@ -34,7 +34,10 @@ const Notes = () => {
                     <div
                         key={note.id}
                         className="note"
-                        onClick={() => setNote(note)}>
+                        onClick={() => {
+                            fetchNotes()
+                            setNote(note)
+                            }}>
                             {note.title}
                             
                             <span className="date">{

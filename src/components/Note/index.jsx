@@ -32,7 +32,7 @@ const Note = ({note}) => {
 
             <Header />
             <div className="save" onClick={update_note}>
-                <i class='bx bx-check'></i>
+                <i className='bx bx-check'></i>
             </div>
             
             <input
