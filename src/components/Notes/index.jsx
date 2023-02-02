@@ -10,19 +10,27 @@ const Notes = () => {
     let nav = useNavigate()
 
     const update_state_from_child = useCallback(() => {
-        fetchNotes()
+        fetch_notes()
     }, [])
 
 
-    let fetchNotes = async () => {
+    let fetch_notes = async () => {
         fetch(`http://localhost:8000/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
         .then(res => res.json())
         .then(data => setNotes(data))
     }
 
+    let delete_note = async (note_id) => {
+        fetch(`http://localhost:8000/api/notes/delete/${note_id}/`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(fetch_notes)
+    }
+
     useEffect(() => {
         if (localStorage.getItem('user')) {
-            fetchNotes()
+            fetch_notes()
         } else {
             nav('/sign-in')
         }
@@ -40,11 +48,15 @@ const Notes = () => {
                                 new Date(note_instance.updated_at).toLocaleDateString()
                             }</span>
 
-                            <span className="delete">
+                            <span className="delete" onClick={e => delete_note(note_instance.id)}>
                                 <i className='bx bx-trash-alt'></i>
                             </span>
                     </div>
                 ))}
+
+                <button className="new-note">
+                    <i className="bx bx-plus"></i>
+                </button>
             </div>
 
             {note ? <Note note_data={note} cb_fn={update_state_from_child} /> : <Empty />}

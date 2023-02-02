@@ -53,5 +53,24 @@
                 }
             }
         }
+
+        .new-note {
+            padding: 20px;
+            background: transparent;
+            display: grid;
+            place-items: center;
+
+            i {
+                display: grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                background: #000;
+                border-radius: 50%;
+                color: white;
+                font-size: 25px;
+                cursor: pointer;
+            }
+        }
     }
 }
