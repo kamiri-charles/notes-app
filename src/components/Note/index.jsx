@@ -9,10 +9,25 @@ const Note = ({note_data, cb_fn}) => {
         setData(note_data)
     }, [note_data])
 
+    let update_note = async () => {
+        fetch(`http://localhost:8000/api/notes/update/${data.id}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+            cb_fn()
+        })
+    }
+
     return (
         <div className="note-meta">
 
-            <button className="save" disabled={data.title === note_data.title && data.content === note_data.content}>
+            <button className="save" disabled={data.title === note_data.title && data.content === note_data.content} onClick={update_note}>
                 <i className="bx bx-check"></i>
             </button>
 

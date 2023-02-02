@@ -11,7 +11,7 @@ const Notes = () => {
 
     const update_state_from_child = useCallback(() => {
         fetchNotes()
-    })
+    }, [])
 
 
     let fetchNotes = async () => {
