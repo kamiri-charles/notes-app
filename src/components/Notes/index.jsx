@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Header from "../Header"
-import Note from "../Note"
-import Empty from "./Empty"
+import Note from '../Note'
+import Empty from '../Empty'
 import './styles.scss'
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
-    let [note, setNote] = useState()
+    let [note, setNote] = useState(undefined)
     let nav = useNavigate()
+
+    const update_state_from_child = useCallback(() => {
+        fetchNotes()
+    })
+
 
     let fetchNotes = async () => {
         fetch(`http://localhost:8000/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
@@ -26,22 +30,14 @@ const Notes = () => {
 
     return (
         <div className="notes component">
-            <Header />
-
             <div className="nav">
                 <div className="title">My Notes.</div>
-                {notes.map(note => (
-                    <div
-                        key={note.id}
-                        className="note"
-                        onClick={() => {
-                            fetchNotes()
-                            setNote(note)
-                            }}>
-                            {note.title}
-                            
+                {notes.map(note_instance => (
+                    <div key={note_instance.id} className="note" onClick={e => setNote(note_instance)}>
+                            {note_instance.title}
+            
                             <span className="date">{
-                                new Date(note.updated_at).toLocaleDateString()
+                                new Date(note_instance.updated_at).toLocaleDateString()
                             }</span>
 
                             <span className="delete">
@@ -51,11 +47,7 @@ const Notes = () => {
                 ))}
             </div>
 
-
-            <div className="main">
-                {note ? <Note note={note} /> : <Empty />}
-            </div>
-            
+            {note ? <Note note_data={note} cb_fn={update_state_from_child} /> : <Empty />}
         </div>
     )
 }

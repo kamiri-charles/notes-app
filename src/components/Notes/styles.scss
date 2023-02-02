@@ -1,7 +1,9 @@
 .notes {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     padding: 20px;
-
+    
     .nav {
         width: 30%;
         height: 80vh;
@@ -10,14 +12,14 @@
         display: flex;
         flex-direction: column;
         border-radius: 5px;
-
+        
         .title {
             padding: 20px;
             font-size: 20px;
             font-family: 'Ubuntu', sans-serif;
             text-decoration: underline;
         }
-
+        
         .note {
             position: relative;
             padding: 20px;
@@ -26,11 +28,11 @@
             background: #eee;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-
+            
             &:hover {
                 background: #ddd;
             }
-
+            
             .date {
                 font-size: 12px;
                 color: #000;
@@ -38,40 +40,17 @@
                 top: 60%;
                 right: 10px;
             }
-
+            
             .delete {
                 position: absolute;
                 top: 10px;
                 right: 10px;
                 cursor: pointer;
                 transition: all 0.2s ease-in-out;
-
+                
                 &:hover {
                     color: red;
                 }
-            }
-        }
-    }
-
-    .main {
-        width: 70%;
-        height: 80vh;
-        background: white;
-        border-radius: 5px;
-        transition: all 0.2s ease-in-out;
-
-        .empty {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            font-size: 20px;
-            font-family: 'Ubuntu', sans-serif;
-
-            .icon {
-                font-size: 50px;
-                margin-bottom: 10px;
             }
         }
     }

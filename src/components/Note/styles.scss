@@ -1,5 +1,8 @@
 .note-meta {
     position: relative;
+    width: 70%;
+    height: 80vh;
+    background: white;
 
     .save {
         display: flex;
@@ -11,7 +14,7 @@
         background: greenyellow;
         text-align: center;
         position: absolute;
-        top: 95%;
+        top: 80%;
         right: 50px;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
@@ -21,7 +24,7 @@
             color: white;
         }
 
-        &.disabled {
+        &:disabled {
             background: #ddd;
             cursor: default;
         }
@@ -32,13 +35,12 @@
         font-size: 20px;
         font-family: 'Ubuntu', sans-serif;
     }
-    
+
     textarea {
         border: none;
         resize: none;
         overflow: auto;
         width: 100%;
-        height: 100%;
         padding: 20px;
         font-size: 16px;
         font-family: 'Ubuntu', sans-serif;
@@ -50,7 +52,7 @@
             outline: none;
         }
     }
-    
+
     .note-footer {
         display: flex;
         flex-direction: column;

@@ -1,65 +1,49 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import Header from "../Header"
+import { useState, useEffect } from 'react'
 import './styles.scss'
 
-const Note = ({note}) => {
-    let nav = useNavigate()
-    let [data, setData] = useState(note)
+const Note = ({note_data, cb_fn}) => {
+
+    let [data, setData] = useState(note_data)
 
     useEffect(() => {
-        if (!localStorage.getItem('user')) {
-            nav('/sign-in')
-        } else {
-            setData(note)
-        }
-    }, [nav, note])
-
-    let update_note = async () => {
-        fetch(`http://localhost:8000/api/notes/update/${note.id}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => setData(data))
-    }
+        setData(note_data)
+    }, [note_data])
 
     return (
         <div className="note-meta">
 
-            <Header />
-            <div className="save" onClick={update_note}>
-                <i className='bx bx-check'></i>
-            </div>
-            
+            <button className="save" disabled={data.title === note_data.title && data.content === note_data.content}>
+                <i className="bx bx-check"></i>
+            </button>
+
             <input
-                className="note-title"
-                placeholder="Untitled"
+                type="text"
+                className='note-title'
+                placeholder='Untitled'
                 value={data.title}
                 onChange={e => setData({...data, title: e.target.value})} />
 
+
             <textarea
-                placeholder="Write your note here..."
+                type="text"
+                className='note-content'
+                placeholder='Write your note here...'
                 value={data.content}
-                onChange={e => setData({...data, content: e.target.value})}>
-            </textarea>
+                onChange={e => setData({...data, content: e.target.value})} />
+
 
             <div className="note-footer">
-                
-                <div className="updated">Last updated: {
-                    new Date(data.updated_at).toLocaleDateString()
-                }</div>
 
-                <div className="created">Created on: {
-                    new Date(data.created_at).toLocaleDateString()
-                }</div>
-                
+                <div className="updated">
+                    Last updated: {new Date(data.updated_at).toLocaleDateString()}
+                </div>
+
+                <div className="created">
+                    Last updated: {new Date(data.created_at).toLocaleDateString()}
+                </div>
             </div>
         </div>
     )
 }
 
-export default Note;
+export default Note

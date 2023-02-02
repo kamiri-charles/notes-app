@@ -1,3 +1,5 @@
+import './styles.scss'
+
 const Empty = () => {
     return (
         <div className="empty">
