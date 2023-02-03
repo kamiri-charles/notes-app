@@ -26,6 +26,28 @@ const Notes = () => {
         })
         .then(res => res.json())
         .then(fetch_notes)
+        .then(setNote(undefined))
+    }
+
+    let create_note = async () => {
+        let user = JSON.parse(localStorage.getItem('user'))
+
+        fetch('http://localhost:8000/api/note/new/', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                title: 'New Note',
+                content: 'Note Content',
+                owner: user
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            fetch_notes()
+            setNote(data)
+        })
     }
 
     useEffect(() => {
@@ -40,21 +62,21 @@ const Notes = () => {
         <div className="notes component">
             <div className="nav">
                 <div className="title">My Notes.</div>
-                {notes.map(note_instance => (
-                    <div key={note_instance.id} className="note" onClick={e => setNote(note_instance)}>
+                {notes?.map(note_instance => (
+                    <div key={note_instance.id} className="note" onClick={() => setNote(note_instance)}>
                             {note_instance.title}
             
                             <span className="date">{
                                 new Date(note_instance.updated_at).toLocaleDateString()
                             }</span>
 
-                            <span className="delete" onClick={e => delete_note(note_instance.id)}>
+                            <span className="delete" onClick={() => delete_note(note_instance.id)}>
                                 <i className='bx bx-trash-alt'></i>
                             </span>
                     </div>
                 ))}
 
-                <button className="new-note">
+                <button className="new-note" onClick={create_note}>
                     <i className="bx bx-plus"></i>
                 </button>
             </div>
