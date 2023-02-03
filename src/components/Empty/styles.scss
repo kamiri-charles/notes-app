@@ -9,6 +9,11 @@
     font-family: 'Ubuntu', sans-serif;
     background: white;
 
+    @media (max-width: 500px) {
+        width: 100%;
+        height: 70vh;
+    }
+
     .icon {
         font-size: 50px;
         margin-bottom: 10px;

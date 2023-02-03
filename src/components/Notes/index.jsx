@@ -40,7 +40,7 @@ const Notes = () => {
             body: JSON.stringify({
                 title: 'New Note',
                 content: 'Note Content',
-                owner: user
+                user_id: user.id
             })
         })
         .then(res => res.json())

@@ -18,7 +18,7 @@ const SignUp = () => {
     return (
         <>
             <Header />
-            <div className='sign-in component'>
+            <div className='sign-up component'>
                 <form>
                     <span className="title">Create an account.</span>
 

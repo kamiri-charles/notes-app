@@ -48,6 +48,7 @@ a {
 }
 
 .form-footer {
+    width: 100%;
     border-top: 2px solid black;
     display: grid;
     text-align: center;
@@ -55,7 +56,7 @@ a {
     padding: 10px 60px;
     
     a {
-        font-size: 18;
+        font-size: 18px;
         color: blue;
         margin: 10px 0;
     }
