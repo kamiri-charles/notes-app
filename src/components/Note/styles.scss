@@ -4,8 +4,10 @@
     height: 80vh;
     background: white;
 
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
+        position: absolute;
         width: 100%;
+        height: calc(100% - 100px);
     }
 
     .save {

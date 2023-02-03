@@ -3,6 +3,33 @@
     align-items: center;
     justify-content: space-around;
     padding: 20px;
+    transition: all 0.3s ease;
+
+    .menu {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 115px;
+        left: 85%;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        border-radius: 50%;
+        background: #d8d8e6;
+        z-index: 999;
+        transition: all 0.3s ease;
+
+        &.bx-x {
+            background: black;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            opacity: 1;
+        }
+    }
     
     .nav {
         width: 30%;
@@ -12,8 +39,19 @@
         display: flex;
         flex-direction: column;
         border-radius: 5px;
+        transition: all 0.3s ease;
 
-        wm
+        @media (max-width: 768px) {
+            position: absolute;
+            z-index: 998;
+            width: 100%;
+            height: calc(100% - 100px);
+            left: -100%;
+
+            &.active {
+                left: 0;
+            }
+        }
         
         .title {
             padding: 20px;

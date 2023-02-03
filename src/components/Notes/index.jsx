@@ -3,31 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import Note from '../Note'
 import Empty from '../Empty'
 import './styles.scss'
+import { useRef } from 'react'
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
     let [note, setNote] = useState(undefined)
     let nav = useNavigate()
+    let notes_nav = useRef()
+    let menu_icon = useRef()
 
     const update_state_from_child = useCallback(() => {
         fetch_notes()
     }, [])
-
-
-    let fetch_notes = async () => {
-        fetch(`http://localhost:8000/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
-        .then(res => res.json())
-        .then(data => setNotes(data))
-    }
-
-    let delete_note = async (note_id) => {
-        fetch(`http://localhost:8000/api/notes/delete/${note_id}/`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(fetch_notes)
-        .then(setNote(undefined))
-    }
 
     let create_note = async () => {
         let user = JSON.parse(localStorage.getItem('user'))
@@ -50,9 +37,40 @@ const Notes = () => {
         })
     }
 
+    let fetch_notes = async () => {
+        fetch(`http://localhost:8000/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
+        .then(res => res.json())
+        .then(data => setNotes(data))
+    }
+
+    let delete_note = async (note_id) => {
+        fetch(`http://localhost:8000/api/notes/delete/${note_id}/`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(() => {
+            fetch_notes()
+            setNote(undefined)
+        })
+    }
+
+    
+
     useEffect(() => {
         if (localStorage.getItem('user')) {
             fetch_notes()
+
+            menu_icon.current.addEventListener('click', () => {
+                if (notes_nav.current.classList.contains('active')) {
+                    notes_nav.current.classList.remove('active')
+                    menu_icon.current.classList.remove('bx-x')
+                    menu_icon.current.classList.add('bx-menu')
+                } else {
+                    notes_nav.current.classList.add('active')
+                    menu_icon.current.classList.add('bx-x')
+                    menu_icon.current.classList.remove('bx-menu')
+                }
+            })
         } else {
             nav('/sign-in')
         }
@@ -60,10 +78,16 @@ const Notes = () => {
 
     return (
         <div className="notes component">
-            <div className="nav">
+            <i className="bx bx-menu menu" ref={menu_icon}></i>
+            <div className="nav" ref={notes_nav}>
                 <div className="title">My Notes.</div>
                 {notes?.map(note_instance => (
-                    <div key={note_instance.id} className="note" onClick={() => setNote(note_instance)}>
+                    <div key={note_instance.id} className="note" onClick={() => {
+                        setNote(note_instance)
+                        notes_nav.current.classList.remove('active')
+                        menu_icon.current.classList.remove('bx-x')
+                        menu_icon.current.classList.add('bx-menu')
+                        }}>
                             {note_instance.title}
             
                             <span className="date">{
