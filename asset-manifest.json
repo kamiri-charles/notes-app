@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.333345cd.css",
-    "main.js": "/static/js/main.3f48b628.js",
-    "static/media/boxicons.svg": "/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
-    "static/media/boxicons.eot": "/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
-    "static/media/boxicons.woff": "/static/media/boxicons.d12afc36557395143e4b.woff",
-    "static/media/boxicons.ttf": "/static/media/boxicons.db9ddb1898dbd76badca.ttf",
-    "static/media/boxicons.woff2": "/static/media/boxicons.df635aaf04cd75132f62.woff2",
-    "index.html": "/index.html",
-    "main.333345cd.css.map": "/static/css/main.333345cd.css.map",
-    "main.3f48b628.js.map": "/static/js/main.3f48b628.js.map"
+    "main.css": "/notes-app/static/css/main.241fa948.css",
+    "main.js": "/notes-app/static/js/main.3f48b628.js",
+    "static/media/boxicons.svg": "/notes-app/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
+    "static/media/boxicons.eot": "/notes-app/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
+    "static/media/boxicons.woff": "/notes-app/static/media/boxicons.d12afc36557395143e4b.woff",
+    "static/media/boxicons.ttf": "/notes-app/static/media/boxicons.db9ddb1898dbd76badca.ttf",
+    "static/media/boxicons.woff2": "/notes-app/static/media/boxicons.df635aaf04cd75132f62.woff2",
+    "index.html": "/notes-app/index.html",
+    "main.241fa948.css.map": "/notes-app/static/css/main.241fa948.css.map",
+    "main.3f48b628.js.map": "/notes-app/static/js/main.3f48b628.js.map"
   },
   "entrypoints": [
-    "static/css/main.333345cd.css",
+    "static/css/main.241fa948.css",
     "static/js/main.3f48b628.js"
   ]
 }
