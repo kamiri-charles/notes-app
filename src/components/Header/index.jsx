@@ -6,10 +6,8 @@ const Header = () => {
     let [user, setUser] = useState(undefined);
 
     useEffect(() => {
-        setTimeout(() => {
-            let user = JSON.parse(localStorage.getItem('user'));
-            setUser(user);
-        }, 2000);
+        let user = JSON.parse(localStorage.getItem('user'));
+        setUser(user);
     }, []);
 
     return (
@@ -23,7 +21,7 @@ const Header = () => {
                 {user === undefined ? <Loader type='ball-pulse' /> : (
                     <>
                         <i className='bx bx-user bx-md'></i>
-                        <span>{user ? user.username : ''}</span>
+                        <span>{user?.username}</span>
                     </>
                 )}
             </div>
