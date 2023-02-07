@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://kamiri-charles.github.io/notes-app/",
+  "homepage": "https://kamiri-charles.github.io/notes-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
