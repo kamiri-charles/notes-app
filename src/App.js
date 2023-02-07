@@ -13,7 +13,7 @@ function App() {
 
       <Header />
 
-      <Router>
+      <Router basename={'notes-app'}>
         <Routes>
           <Route exact path='/' element={ <Notes />} />
           <Route exact path='/sign-in' element={ <SignIn /> } />
