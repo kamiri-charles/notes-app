@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { sign_up_user } from './sign_up'
-import Header from '../Header'
 import './styles.scss'
 
 

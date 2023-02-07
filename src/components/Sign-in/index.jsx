@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { sign_in_user } from './sign_in'
-import Header from '../Header'
 import './styles.scss'
 
 
