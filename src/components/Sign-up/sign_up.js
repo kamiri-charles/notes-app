@@ -25,7 +25,7 @@ export const sign_up_user = (user, div, nav) => {
             .then(data => {
                 if (data.signed_in) {
                     // fetch and save user data to local storage
-                    fetch('/api/user/sign-up/')
+                    fetch('https://notes-app-api.azurewebsites.net/api/user/')
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('user', JSON.stringify(data))
