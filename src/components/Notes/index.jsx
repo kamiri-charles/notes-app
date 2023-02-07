@@ -19,7 +19,7 @@ const Notes = () => {
     let create_note = async () => {
         let user = JSON.parse(localStorage.getItem('user'))
 
-        fetch('http://localhost:8000/api/note/new/', {
+        fetch('https://notes-app-api.azurewebsites.net/api/note/new/', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -38,13 +38,13 @@ const Notes = () => {
     }
 
     let fetch_notes = async () => {
-        fetch(`http://localhost:8000/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
+        fetch(`https://notes-app-api.azurewebsites.net/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
         .then(res => res.json())
         .then(data => setNotes(data))
     }
 
     let delete_note = async (note_id) => {
-        fetch(`http://localhost:8000/api/notes/delete/${note_id}/`, {
+        fetch(`https://notes-app-api.azurewebsites.net/api/notes/delete/${note_id}/`, {
             method: 'DELETE'
         })
         .then(res => res.json())

@@ -9,7 +9,7 @@ export const sign_up_user = (user, div, nav) => {
         div.current.innerText = "The passwords entered do not match.\nTry again."
     } else {
         (async () => {
-            fetch('/api/user/sign-up/', {
+            fetch('https://notes-app-api.azurewebsites.net/api/user/sign-up/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

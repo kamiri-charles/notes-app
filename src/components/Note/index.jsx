@@ -10,7 +10,7 @@ const Note = ({note_data, cb_fn}) => {
     }, [note_data])
 
     let update_note = async () => {
-        fetch(`http://localhost:8000/api/notes/update/${data.id}/`, {
+        fetch(`https://notes-app-api.azurewebsites.net/api/notes/update/${data.id}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

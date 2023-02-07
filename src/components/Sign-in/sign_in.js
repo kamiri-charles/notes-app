@@ -7,7 +7,7 @@ export const sign_in_user = (user, div, nav) => {
         div.current.innerText = "Please enter your password."
     } else {
         (async () => {
-            fetch('/api/user/sign-in/', {
+            fetch('https://notes-app-api.azurewebsites.net/api/user/sign-in/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
