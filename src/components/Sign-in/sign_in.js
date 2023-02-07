@@ -18,18 +18,13 @@ export const sign_in_user = (user, div, nav) => {
 
             .then(res => res.json())
             .then(data => {
-                if (data.signed_in) {
-                    // fetch and save user data to local storage
-                    fetch('https://notes-app-api.azurewebsites.net/api/user/')
-                    .then(res => res.json())
-                    .then(data => {
-                        localStorage.setItem('user', JSON.stringify(data))
-                        nav('/', {state: data})
-                    })
-                    .catch(err => div.current.innerText=err)
+                if (data.err) {
+                    div.current.innerText = data.err
+                } else {
+                    localStorage.setItem('user', JSON.stringify(data))
+                    nav('/')
                 }
             })
-
-        }) ();
+        }) ()
     }
 }
