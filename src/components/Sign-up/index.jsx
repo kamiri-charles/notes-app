@@ -16,51 +16,48 @@ const SignUp = () => {
     })
 
     return (
-        <>
-            <Header />
-            <div className='sign-up component'>
-                <form>
-                    <span className="title">Create an account.</span>
+        <div className='sign-up component'>
+            <form>
+                <span className="title">Create an account.</span>
 
-                    <input
-                        type='text'
-                        placeholder='Username'
-                        value={user.username}
-                        onChange={e => setUser({...user, username: e.target.value})}
-                    />
+                <input
+                    type='text'
+                    placeholder='Username'
+                    value={user.username}
+                    onChange={e => setUser({...user, username: e.target.value})}
+                />
 
-                    <input
-                        type='password'
-                        placeholder='Password'
-                        value={user.password}
-                        onChange={e => setUser({...user, password: e.target.value})}
-                    />
+                <input
+                    type='password'
+                    placeholder='Password'
+                    value={user.password}
+                    onChange={e => setUser({...user, password: e.target.value})}
+                />
 
-                    <input
-                        type='password'
-                        placeholder='Re-enter the password'
-                        value={user.password2}
-                        onChange={e => setUser({...user, password2: e.target.value})}
-                    />
+                <input
+                    type='password'
+                    placeholder='Re-enter the password'
+                    value={user.password2}
+                    onChange={e => setUser({...user, password2: e.target.value})}
+                />
 
-                    <div className="errors" ref={error_div}></div>
+                <div className="errors" ref={error_div}></div>
 
-                    <button
-                        type='submit'
-                        onClick={e => {
-                            e.preventDefault();
-                            sign_up_user(user, error_div, nav);
-                        }}>
-                        Create account
-                    </button>
+                <button
+                    type='submit'
+                    onClick={e => {
+                        e.preventDefault();
+                        sign_up_user(user, error_div, nav);
+                    }}>
+                    Create account
+                </button>
 
-                    <div className="form-footer">
-                        <span>Already have an account?</span>
-                        <Link to='/sign-in'>Log in.</Link>
-                    </div>
-                </form>
-            </div>
-        </>
+                <div className="form-footer">
+                    <span>Already have an account?</span>
+                    <Link to='/sign-in'>Log in.</Link>
+                </div>
+            </form>
+        </div>
     )
 }
 export default SignUp;
