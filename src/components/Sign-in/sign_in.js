@@ -21,7 +21,12 @@ export const sign_in_user = (user, div, nav) => {
                 if (data.err) {
                     div.current.innerText = data.err
                 } else {
+                    const evt = document.createEvent('StorageEvent');
+                    evt.initStorageEvent('storage', false, false, 'user', '', JSON.stringify(data),null, window.localStorage);
+
                     localStorage.setItem('user', JSON.stringify(data))
+
+                    window.dispatchEvent(evt);
                     nav('/')
                 }
             })
