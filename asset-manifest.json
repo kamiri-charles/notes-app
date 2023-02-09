@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/notes-app/static/css/main.241fa948.css",
-    "main.js": "/notes-app/static/js/main.8a94fbce.js",
+    "main.js": "/notes-app/static/js/main.5602ea36.js",
     "static/media/boxicons.svg": "/notes-app/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
     "static/media/boxicons.eot": "/notes-app/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/boxicons.woff": "/notes-app/static/media/boxicons.d12afc36557395143e4b.woff",
@@ -9,10 +9,10 @@
     "static/media/boxicons.woff2": "/notes-app/static/media/boxicons.df635aaf04cd75132f62.woff2",
     "index.html": "/notes-app/index.html",
     "main.241fa948.css.map": "/notes-app/static/css/main.241fa948.css.map",
-    "main.8a94fbce.js.map": "/notes-app/static/js/main.8a94fbce.js.map"
+    "main.5602ea36.js.map": "/notes-app/static/js/main.5602ea36.js.map"
   },
   "entrypoints": [
     "static/css/main.241fa948.css",
-    "static/js/main.8a94fbce.js"
+    "static/js/main.5602ea36.js"
   ]
 }
