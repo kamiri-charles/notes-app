@@ -4,6 +4,7 @@ import Note from '../Note'
 import Empty from '../Empty'
 import './styles.scss'
 import { useRef } from 'react'
+import { InfinitySpin } from 'react-loader-spinner'
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
@@ -11,12 +12,14 @@ const Notes = () => {
     let nav = useNavigate()
     let notes_nav = useRef()
     let menu_icon = useRef()
-
+    const[loading, setLoading] = useState(true)
+    
     const update_state_from_child = useCallback(() => {
         fetch_notes()
     }, [])
 
     let create_note = async () => {
+        setLoading(true)
         let user = JSON.parse(localStorage.getItem('user'))
 
         fetch('https://notes-app-api.azurewebsites.net/api/note/new/', {
@@ -34,6 +37,8 @@ const Notes = () => {
         .then(data => {
             fetch_notes()
             setNote(data)
+            setLoading(false)
+
         })
     }
 
@@ -41,6 +46,7 @@ const Notes = () => {
         fetch(`https://notes-app-api.azurewebsites.net/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
         .then(res => res.json())
         .then(data => setNotes(data))
+        setLoading(false)
     }
 
     let delete_note = async (note_id) => {
@@ -81,7 +87,16 @@ const Notes = () => {
             <i className="bx bx-menu menu" ref={menu_icon}></i>
             <div className="nav" ref={notes_nav}>
                 <div className="title">My Notes.</div>
-                {notes?.map(note_instance => (
+                {loading? (
+                   <div className='new-note'>
+                   <InfinitySpin 
+                    width='200'
+                    color="purple"
+                    />
+                  </div>
+                ):(
+                    <>
+                      {notes?.map(note_instance => (
                     <div key={note_instance.id} className="note" onClick={() => {
                         setNote(note_instance)
                         notes_nav.current.classList.remove('active')
@@ -99,7 +114,9 @@ const Notes = () => {
                             </span>
                     </div>
                 ))}
-
+                    </>
+                )}
+            
                 <button className="new-note" onClick={create_note}>
                     <i className="bx bx-plus"></i>
                 </button>
