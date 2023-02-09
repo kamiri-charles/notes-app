@@ -15,7 +15,7 @@ function App() {
 
       <Router basename={'notes-app'}>
         <Routes>
-          <Route exact path='/' element={ <><Header /> <Notes /></> } />
+          <Route exact path='/' element={ <Notes /> } />
           <Route exact path='/sign-in' element={ <SignIn /> } />
           <Route exact path='/sign-up' element={ <SignUp /> } />
         </Routes>
