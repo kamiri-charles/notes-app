@@ -117,13 +117,5 @@
                 cursor: pointer;
             }
         }
-
-        .new-note-spinner {
-            padding: 9.5px calc(25% - 5px) 9px calc(25% - 50px);
-            background: white;
-            &:hover {
-                background: white;
-            }
-        }
     }
 }

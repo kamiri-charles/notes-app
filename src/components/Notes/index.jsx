@@ -20,6 +20,7 @@ const Notes = () => {
     }, [])
 
     let create_note = async () => {
+        setLoading(true)
         let user = JSON.parse(localStorage.getItem('user'))
 
         fetch('https://notes-app-api.azurewebsites.net/api/note/new/', {
@@ -38,7 +39,6 @@ const Notes = () => {
             fetch_notes()
             setNote(data)
             setLoading(false)
-
         })
     }
 
