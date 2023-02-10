@@ -4,7 +4,11 @@ import Note from '../Note'
 import Empty from '../Empty'
 import './styles.scss'
 import { useRef } from 'react'
-import { InfinitySpin } from 'react-loader-spinner'
+import { ColorRing } from 'react-loader-spinner'
+
+/* 
+
+ */
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
@@ -38,7 +42,6 @@ const Notes = () => {
             fetch_notes()
             setNote(data)
             setLoading(false)
-
         })
     }
 
@@ -87,17 +90,8 @@ const Notes = () => {
             <i className="bx bx-menu menu" ref={menu_icon}></i>
             <div className="nav" ref={notes_nav}>
                 <div className="title">My Notes.</div>
-                {loading? (
-                   <div className='new-note'>
-                   <InfinitySpin 
-                    width='200'
-                    color="purple"
-                    />
-                  </div>
-                ):(
-                    <>
                       {notes?.map(note_instance => (
-                    <div key={note_instance.id} className="note" onClick={() => {
+                        <div key={note_instance.id} className="note" onClick={() => {
                         setNote(note_instance)
                         notes_nav.current.classList.remove('active')
                         menu_icon.current.classList.remove('bx-x')
@@ -114,12 +108,23 @@ const Notes = () => {
                             </span>
                     </div>
                 ))}
-                    </>
-                )}
-            
+
                 <button className="new-note" onClick={create_note}>
-                    <i className="bx bx-plus"></i>
+                    {loading ? (
+                        <ColorRing
+                            visible={true}
+                            height="40"
+                            width="40"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={["#000", "#000", "#000", "#000", "#000",]}
+                        />
+                    ) :  (
+                        <i className="bx bx-plus"></i>
+                    )}
                 </button>
+                
             </div>
 
             {note ? <Note note_data={note} cb_fn={update_state_from_child} /> : <Empty />}
