@@ -55,11 +55,14 @@
             }
         }
         
-        .title {
-            padding: 20px;
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 40px;
             font-size: 20px;
             font-family: 'Ubuntu', sans-serif;
-            text-decoration: underline;
+            border-bottom: 2px solid black;
         }
         
         .note {

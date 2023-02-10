@@ -6,9 +6,6 @@ import './styles.scss'
 import { useRef } from 'react'
 import { ColorRing } from 'react-loader-spinner'
 
-/* 
-
- */
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
@@ -89,7 +86,10 @@ const Notes = () => {
         <div className="notes component">
             <i className="bx bx-menu menu" ref={menu_icon}></i>
             <div className="nav" ref={notes_nav}>
-                <div className="title">My Notes.</div>
+                <div className="title-wrapper">
+                    <span className="title">My Notes.</span>
+                    <span className='counter'>{notes.length}</span>
+                </div>
                       {notes?.map(note_instance => (
                         <div key={note_instance.id} className="note" onClick={() => {
                         setNote(note_instance)
