@@ -54,7 +54,7 @@ const Note = ({note_data, cb_fn}) => {
                 </div>
 
                 <div className="created">
-                    Last updated: {new Date(data.created_at).toLocaleDateString()}
+                    Created on: {new Date(data.created_at).toLocaleDateString()}
                 </div>
             </div>
         </div>

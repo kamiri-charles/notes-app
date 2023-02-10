@@ -4,7 +4,8 @@ import Note from '../Note'
 import Empty from '../Empty'
 import './styles.scss'
 import { useRef } from 'react'
-import { InfinitySpin } from 'react-loader-spinner'
+import { ColorRing } from 'react-loader-spinner'
+
 
 const Notes = () => {
     let [notes, setNotes] = useState([])
@@ -20,8 +21,6 @@ const Notes = () => {
 
     let create_note = async () => {
         let user = JSON.parse(localStorage.getItem('user'))
-        let tempNotes = notes.concat(['new']);
-        setNotes(tempNotes);
 
         fetch('https://notes-app-api.azurewebsites.net/api/note/new/', {
             method: 'POST',
@@ -38,28 +37,19 @@ const Notes = () => {
         .then(data => {
             fetch_notes()
             setNote(data)
+            setLoading(false)
 
         })
     }
 
     let fetch_notes = async () => {
-        if (!notes.length) {
-            setLoading(true);
-        }
         fetch(`https://notes-app-api.azurewebsites.net/api/notes/${JSON.parse(localStorage.getItem('user')).username}/`)
         .then(res => res.json())
-        .then(data => {
-            if (!notes.length) {
-                setLoading(false);
-            }
-            setNotes(data)
-        })
+        .then(data => setNotes(data))
+        setLoading(false)
     }
 
     let delete_note = async (note_id) => {
-        let tempNotes = notes.slice(0, notes.length - 1)
-        setNotes(tempNotes)
-        setNote(undefined)
         fetch(`https://notes-app-api.azurewebsites.net/api/notes/delete/${note_id}/`, {
             method: 'DELETE'
         })
@@ -96,51 +86,45 @@ const Notes = () => {
         <div className="notes component">
             <i className="bx bx-menu menu" ref={menu_icon}></i>
             <div className="nav" ref={notes_nav}>
-                <div className="title">My Notes.</div>
-                {loading? (
-                  <div className='new-note'>
-                    <InfinitySpin
-                        width='200'
-                        color="purple"
-                    />
-                  </div>
-                ):(
-                    <>
-                      {notes?.map(note_instance => {
-                        return note_instance === 'new' ?
-                            (
-                                <div key={Math.random()} className='new-note new-note-spinner'>
-                                    <InfinitySpin
-                                        width='100'
-                                        height='50'
-                                        color="purple"
-                                    />
-                                </div>
-                            ):(
-                                <div key={note_instance.id} className="note" onClick={() => {
-                                    setNote(note_instance)
-                                    notes_nav.current.classList.remove('active')
-                                    menu_icon.current.classList.remove('bx-x')
-                                    menu_icon.current.classList.add('bx-menu')
-                                    }}>
-                                        {note_instance.title}
+                <div className="title-wrapper">
+                    <span className="title">My Notes.</span>
+                    <span className='counter'>{notes.length}</span>
+                </div>
+                      {notes?.map(note_instance => (
+                        <div key={note_instance.id} className="note" onClick={() => {
+                        setNote(note_instance)
+                        notes_nav.current.classList.remove('active')
+                        menu_icon.current.classList.remove('bx-x')
+                        menu_icon.current.classList.add('bx-menu')
+                        }}>
+                            {note_instance.title}
 
-                                        <span className="date">{
-                                            new Date(note_instance.updated_at).toLocaleDateString()
-                                        }</span>
+                            <span className="date">{
+                                new Date(note_instance.updated_at).toLocaleDateString()
+                            }</span>
 
-                                        <span className="delete" onClick={() => delete_note(note_instance.id)}>
-                                            <i className='bx bx-trash-alt'></i>
-                                        </span>
-                                </div>
-                            )
-                      })}
-                    </>
-                )}
+                            <span className="delete" onClick={() => delete_note(note_instance.id)}>
+                                <i className='bx bx-trash-alt'></i>
+                            </span>
+                    </div>
+                ))}
 
                 <button className="new-note" onClick={create_note}>
-                    <i className="bx bx-plus"></i>
+                    {loading ? (
+                        <ColorRing
+                            visible={true}
+                            height="40"
+                            width="40"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={["#000", "#000", "#000", "#000", "#000",]}
+                        />
+                    ) :  (
+                        <i className="bx bx-plus"></i>
+                    )}
                 </button>
+
             </div>
 
             {note ? <Note note_data={note} cb_fn={update_state_from_child} /> : <Empty />}
