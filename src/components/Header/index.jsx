@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loader from 'react-loaders';
+import SignOut from '../Sign-out'
 import './styles.scss';
 
 const useLocalStorage = (key) => {
@@ -12,7 +13,7 @@ const useLocalStorage = (key) => {
           setValue(null);
         } else if (event.key === key) {
           // the value we're watching changed. Update it.
-          setValue(JSON.parse(event.newValue).username);
+          setValue(JSON.parse(event.newValue).username || null);
         }
       }
       // User already exists in local storage
@@ -28,11 +29,12 @@ const useLocalStorage = (key) => {
       }
     }, [key]);
 
-    return value;
+    return value
   }
 
 const Header = () => {
     const user = useLocalStorage('user');
+    const [signOut, setSignOut] = useState(false);
 
     return (
         <div className="header">
@@ -41,13 +43,17 @@ const Header = () => {
                 <span className='bx-sm'>Notes</span>
             </div>
 
-            <div className="r">
+            <div className="r"
+                 onClick={() => localStorage.removeItem('user')}
+                 onMouseEnter={() => setSignOut(true)}
+                 onMouseLeave={() => setSignOut(false)}>
                 {user === undefined ? <Loader type='ball-pulse' /> : (
                     <>
                         <i className='bx bx-user bx-md'></i>
                         <span>{user}</span>
                     </>
                 )}
+                {signOut ? <SignOut user={user} /> : null}
             </div>
         </div>
     )
