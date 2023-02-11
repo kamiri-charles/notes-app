@@ -80,6 +80,24 @@ const Notes = () => {
         } else {
             nav('/sign-in')
         }
+
+        const updateValue = (event) => {
+            const oldUsername = JSON.parse(event.oldValue).username;
+            const newUsername = JSON.parse(event.newValue).username;
+
+            if (oldUsername &&
+                !newUsername &&
+                event.key === 'user') {
+              nav('/sign-in')
+            }
+          }
+
+          window.addEventListener('storage', updateValue, false);
+          return () => {
+            window.removeEventListener('storage', updateValue, false);
+          }
+
+
     }, [nav])
 
     return (
