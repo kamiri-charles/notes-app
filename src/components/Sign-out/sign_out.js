@@ -13,8 +13,7 @@ export const sign_out_user = (user, div) => {
         .then(res => res.json())
         .then(data => {
             if (data.err) {
-                //Not sure yet what to do with this, if anything.
-                //div.current.innerText = data.err
+                div.current.innerText = "Error Signing out !\nLogin first";
             } else {
                 const evt = document.createEvent('StorageEvent');
                 evt.initStorageEvent('storage',
