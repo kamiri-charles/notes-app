@@ -1,0 +1,11 @@
+.sign-out {
+    font-family: 'Sedgwick Ave';
+    width: 70px;
+    text-align: center;
+    position: absolute;
+    top: 54.5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

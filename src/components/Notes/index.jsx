@@ -14,7 +14,7 @@ const Notes = () => {
     let notes_nav = useRef()
     let menu_icon = useRef()
     const[loading, setLoading] = useState(true)
-    
+
     const update_state_from_child = useCallback(() => {
         fetch_notes()
     }, [])
@@ -60,7 +60,7 @@ const Notes = () => {
         })
     }
 
-    
+
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
@@ -80,6 +80,24 @@ const Notes = () => {
         } else {
             nav('/sign-in')
         }
+
+        const updateValue = (event) => {
+            const oldUsername = JSON.parse(event.oldValue).username;
+            const newUsername = JSON.parse(event.newValue).username;
+
+            if (oldUsername &&
+                !newUsername &&
+                event.key === 'user') {
+              nav('/sign-in')
+            }
+          }
+
+          window.addEventListener('storage', updateValue, false);
+          return () => {
+            window.removeEventListener('storage', updateValue, false);
+          }
+
+
     }, [nav])
 
     return (
@@ -98,7 +116,7 @@ const Notes = () => {
                         menu_icon.current.classList.add('bx-menu')
                         }}>
                             {note_instance.title}
-            
+
                             <span className="date">{
                                 new Date(note_instance.updated_at).toLocaleDateString()
                             }</span>
@@ -124,7 +142,7 @@ const Notes = () => {
                         <i className="bx bx-plus"></i>
                     )}
                 </button>
-                
+
             </div>
 
             {note ? <Note note_data={note} cb_fn={update_state_from_child} /> : <Empty />}
