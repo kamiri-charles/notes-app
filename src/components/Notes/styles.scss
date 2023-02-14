@@ -43,6 +43,11 @@
         scroll-behavior: smooth;
         transition: all 0.3s ease;
 
+        div[aria-label = "oval-loading"] {
+            align-items: center;
+            justify-content: center;
+        }
+
         @media (max-width: 768px) {
             position: absolute;
             z-index: 998;
@@ -104,6 +109,7 @@
             background: transparent;
             display: grid;
             place-items: center;
+            transition: all 0.3s ease;
 
             i {
                 display: grid;

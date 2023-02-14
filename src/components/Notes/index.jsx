@@ -1,14 +1,13 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ColorRing, Oval } from 'react-loader-spinner'
 import Note from '../Note'
 import Empty from '../Empty'
 import './styles.scss'
-import { useRef } from 'react'
-import { ColorRing } from 'react-loader-spinner'
 
 
 const Notes = () => {
-    let [notes, setNotes] = useState([])
+    let [notes, setNotes] = useState(null)
     let [note, setNote] = useState(undefined)
     let nav = useNavigate()
     let notes_nav = useRef()
@@ -106,9 +105,9 @@ const Notes = () => {
             <div className="nav" ref={notes_nav}>
                 <div className="title-wrapper">
                     <span className="title">My Notes.</span>
-                    <span className='counter'>{notes.length}</span>
+                    <span className='counter'>{notes?.length}</span>
                 </div>
-                      {notes?.map(note_instance => (
+                      {notes ? notes.map(note_instance => (
                         <div key={note_instance.id} className="note" onClick={() => {
                         setNote(note_instance)
                         notes_nav.current.classList.remove('active')
@@ -125,16 +124,24 @@ const Notes = () => {
                                 <i className='bx bx-trash-alt'></i>
                             </span>
                     </div>
-                ))}
+                )) : (
+                    <Oval
+                        height={30}
+                        width={30}
+                        color="#000"
+                        ariaLabel='oval-loading'
+                        secondaryColor="rgba(0, 0, 0, 0.5)"
+                        strokeWidth={2}
+                        strokeWidthSecondary={2}
+                    />
+                )}
 
                 <button className="new-note" onClick={create_note}>
                     {loading ? (
                         <ColorRing
-                            visible={true}
                             height="40"
                             width="40"
                             ariaLabel="blocks-loading"
-                            wrapperStyle={{}}
                             wrapperClass="blocks-wrapper"
                             colors={["#000", "#000", "#000", "#000", "#000",]}
                         />
