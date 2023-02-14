@@ -1,11 +1,14 @@
 .sign-out {
-    font-family: 'Sedgwick Ave';
+    font-size: small;
     width: 70px;
     text-align: center;
     position: absolute;
     top: 54.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
     &:hover {
-        cursor: pointer;
+        color: lightblue;
     }
 }

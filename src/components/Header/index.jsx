@@ -34,7 +34,6 @@ const useLocalStorage = (key) => {
 
 const Header = () => {
     const user = useLocalStorage('user');
-    const [signOut, setSignOut] = useState(false);
 
     return (
         <div className="header">
@@ -44,16 +43,14 @@ const Header = () => {
             </div>
 
             <div className="r"
-                 onClick={() => localStorage.removeItem('user')}
-                 onMouseEnter={() => setSignOut(true)}
-                 onMouseLeave={() => setSignOut(false)}>
+                 onClick={() => localStorage.removeItem('user')}>
                 {user === undefined ? <Loader type='ball-pulse' /> : (
                     <>
                         <i className='bx bx-user bx-md'></i>
                         <span>{user}</span>
+                        <SignOut user={user} />
                     </>
                 )}
-                {signOut ? <SignOut user={user} /> : null}
             </div>
         </div>
     )
