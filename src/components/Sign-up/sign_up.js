@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-export const sign_up_user = (user, div, nav) => {
+export const sign_up_user = (user, div, nav, setLoading) => {
     if (user.username === "") {
         div.current.innerText = "Please enter your username."
     } else if (user.password === "") {
@@ -29,6 +29,7 @@ export const sign_up_user = (user, div, nav) => {
                 localStorage.setItem('user', JSON.stringify(data))
 
                 window.dispatchEvent(evt);
+                setLoading(false);
                 nav('/')
             })
             .catch(err => {
