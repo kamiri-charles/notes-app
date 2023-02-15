@@ -34,6 +34,7 @@ export const sign_up_user = (user, div, nav, setLoading) => {
             })
             .catch(err => {
                 console.log(err)
+                setLoading(false);
                 alert('There was an error signing up. Please try again.')
             })
 

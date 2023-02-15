@@ -19,7 +19,8 @@ export const sign_in_user = (user, div, nav, setLoading) => {
             .then(res => res.json())
             .then(data => {
                 if (data.err) {
-                    div.current.innerText = data.err
+                    div.current.innerText = data.err;
+                    setLoading(false);
                 } else {
                     const evt = document.createEvent('StorageEvent');
                     evt.initStorageEvent('storage', false, false, 'user', '', JSON.stringify(data),null, window.localStorage);
