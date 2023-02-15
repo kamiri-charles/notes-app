@@ -33,9 +33,12 @@
         }
 
         button {
+            position: relative;
             background: black;
             border-radius: 5px;
             color: white;
+            width: 127.92px;
+            height: 38.5px;
             margin: 20px;
             padding: 10px 40px;
             cursor: pointer;

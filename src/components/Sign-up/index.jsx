@@ -1,18 +1,26 @@
 import { useState, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { sign_up_user } from './sign_up'
+import { ProgressBar } from 'react-loader-spinner'
 import './styles.scss'
 
 
 const SignUp = () => {
     let error_div = useRef();
     let nav = useNavigate();
+    const[loading, setLoading] = useState(false);
 
     let [user, setUser] = useState({
         username: "",
         password: "",
         password2: ""
     })
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        sign_up_user(user, error_div, nav, setLoading);
+    }
 
     return (
         <div className='sign-up component'>
@@ -44,11 +52,23 @@ const SignUp = () => {
 
                 <button
                     type='submit'
-                    onClick={e => {
-                        e.preventDefault();
-                        sign_up_user(user, error_div, nav);
-                    }}>
-                    Create account
+                    onClick={handleSignUp}>
+                    {loading ? (
+                        <ProgressBar
+                            ariaLabel="progress-bar-loading"
+                            wrapperStyle={{ height: '50px',
+                                            width: '100px',
+                                            position: 'absolute',
+                                            top: '-5px',
+                                            left: '45px'
+                                          }}
+                            wrapperClass="progress-bar-wrapper"
+                            borderColor = '#FFFFFF'
+                            barColor = '#673AB7'
+                        />
+                    ) :  (
+                        'Create account'
+                    )}
                 </button>
 
                 <div className="form-footer">
