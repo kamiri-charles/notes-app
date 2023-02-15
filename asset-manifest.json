@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/notes-app/static/css/main.5d4b8737.css",
-    "main.js": "/notes-app/static/js/main.8d697451.js",
+    "main.css": "/notes-app/static/css/main.b565f0ff.css",
+    "main.js": "/notes-app/static/js/main.528a2fc8.js",
     "static/media/boxicons.svg": "/notes-app/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
     "static/media/boxicons.eot": "/notes-app/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/boxicons.woff": "/notes-app/static/media/boxicons.d12afc36557395143e4b.woff",
     "static/media/boxicons.ttf": "/notes-app/static/media/boxicons.db9ddb1898dbd76badca.ttf",
     "static/media/boxicons.woff2": "/notes-app/static/media/boxicons.df635aaf04cd75132f62.woff2",
     "index.html": "/notes-app/index.html",
-    "main.5d4b8737.css.map": "/notes-app/static/css/main.5d4b8737.css.map",
-    "main.8d697451.js.map": "/notes-app/static/js/main.8d697451.js.map"
+    "main.b565f0ff.css.map": "/notes-app/static/css/main.b565f0ff.css.map",
+    "main.528a2fc8.js.map": "/notes-app/static/js/main.528a2fc8.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d4b8737.css",
-    "static/js/main.8d697451.js"
+    "static/css/main.b565f0ff.css",
+    "static/js/main.528a2fc8.js"
   ]
 }
